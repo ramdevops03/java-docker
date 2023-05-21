@@ -10,5 +10,11 @@ COPY . .
 # Build the Java application using Maven
 RUN mvn clean package
 
+# Create a directory for compiled class files
+RUN mkdir -p target/classes
+
+# Copy the compiled class files to the target directory
+RUN cp -r target/*.class target/classes/
+
 # Set the command to run when the container starts
 CMD ["java", "-cp", "target/classes", "Main"]
