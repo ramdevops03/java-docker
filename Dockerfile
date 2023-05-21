@@ -11,4 +11,4 @@ COPY . .
 RUN mvn clean package
 
 # Set the command to run when the container starts
-CMD ["java", "-jar", "target/java-docker-example-1.0-SNAPSHOT.jar"]
+CMD ["java", "-cp", "target/classes", "Main"]
