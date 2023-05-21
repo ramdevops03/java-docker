@@ -1,14 +1,14 @@
-# Use a base image with Java pre-installed
-FROM openjdk:11
+# Use a base image with Java and Maven pre-installed
+FROM maven:3.6-openjdk-11
 
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy the compiled Java file into the container
-COPY Main.java .
+# Copy the source code into the container
+COPY . .
 
-# Compile the Java file
-RUN javac Main.java
+# Compile and package the Java application
+RUN mvn package
 
 # Set the command to run when the container starts
-CMD ["java", "Main"]
+CMD ["java", "-jar", "target/java-docker-example.jar"]
